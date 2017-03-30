@@ -79,10 +79,26 @@ class Solution(object):
                 result.append(-1)
         return result
 
+    def next_greater_element_v2(self):
+        greater_numbers = {}
+        result = []
+        _ = []
+
+        for num in self.nums:
+            while len(_) and _[-1] < num:
+                greater_numbers[_.pop()] = num
+            _.append(num)
+
+        for num in self.find_nums:
+            result.append(greater_numbers.get(num, -1))
+
+        return result
+
 
 def main():
     solution = Solution([4, 1, 2], [1, 3, 4, 2])
     print solution.next_greater_element()
+    print solution.next_greater_element_v2()
 
 
 if __name__ == '__main__':
